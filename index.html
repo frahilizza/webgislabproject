@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banks and ATMs of Mirpur Khas - Web GIS</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ===== Landing / header ===== -->
+    <header class="hero">
+        <div class="hero-inner">
+            <p class="kicker">Web GIS Applications &middot; MET418 &middot; Midterm Project</p>
+            <h1>Banks &amp; ATMs of Mirpur Khas</h1>
+            <p class="tagline">
+                An interactive map of bank branches and ATMs in Mirpur Khas, Sindh,
+                powered by PostgreSQL/PostGIS.
+            </p>
+            <a class="enter" href="#explore">Explore the map &darr;</a>
+
+            <div class="stats">
+                <div class="stat"><span class="num" id="statTotal">0</span><span class="lbl">Total points</span></div>
+                <div class="stat"><span class="num" id="statBanks">0</span><span class="lbl">Bank branches</span></div>
+                <div class="stat"><span class="num" id="statAtms">0</span><span class="lbl">ATMs</span></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== Panel + map ===== -->
+    <main class="explorer" id="explore">
+        <h2 class="section-title">Explore the map</h2>
+
+        <div class="shell">
+            <aside class="panel">
+                <div class="field">
+                    <label for="search">Search</label>
+                    <input id="search" type="text" placeholder="Name, bank or address">
+                </div>
+
+                <div class="field">
+                    <label>Type</label>
+                    <div class="seg" id="typeSeg">
+                        <button type="button" data-type="" class="on">All</button>
+                        <button type="button" data-type="Bank">Banks</button>
+                        <button type="button" data-type="ATM">ATMs</button>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="bankFilter">Bank</label>
+                    <select id="bankFilter">
+                        <option value="">All banks</option>
+                    </select>
+                </div>
+
+                <button type="button" id="resetBtn" class="reset">Reset filters</button>
+
+                <div class="count" id="summary">Loading...</div>
+                <div id="message"></div>
+
+                <ul id="list"></ul>
+            </aside>
+
+            <div class="mapwrap">
+                <div id="map"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ===== Study area information ===== -->
+    <section class="about">
+        <div class="card">
+            <h2>Study area</h2>
+            <p>
+                Mirpur Khas is a city and the district headquarters of Mirpur Khas District in
+                south-eastern Sindh, Pakistan. It is a trading centre for the surrounding
+                agricultural area and is well known for its mangoes. This map shows the
+                bank branches and ATMs in and around the city.
+            </p>
+        </div>
+        <div class="card">
+            <h2>Data and method</h2>
+            <p>
+                Locations were collected from Google Maps and OpenStreetMap and stored as point
+                features in a PostgreSQL/PostGIS database. A Node.js (Express) API reads them
+                from the database and sends them to this Leaflet map as GeoJSON.
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        Student: Frahil Izza &nbsp;|&nbsp; CIIT/FA23-BRG-025/ISB &nbsp;|&nbsp;
+        Study area: Mirpur Khas, Sindh &nbsp;|&nbsp; Feature: Banks and ATMs
+        <br>Base map tiles &copy; Esri / OpenStreetMap contributors
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
